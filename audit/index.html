@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Audit de prise de rendez-vous · Oui Mardi</title>
+<link rel="canonical" href="https://ouimardi.fr/audit/">
+<meta name="description" content="Audit offert de votre prise de rendez-vous B2B. 12 questions, 2 minutes. On ne remplit pas votre agenda : on le qualifie.">
+<meta property="og:title" content="Audit de votre prise de rendez-vous · Oui Mardi">
+<meta property="og:description" content="12 questions, 2 minutes. Si votre profil correspond, vous choisissez votre créneau.">
+<meta name="theme-color" content="#0B1F3A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'%3E%3Crect x='0' y='0' width='100' height='100' rx='22' fill='%230B1F3A'/%3E%3Cmask id='m9' maskUnits='userSpaceOnUse' x='12' y='11' width='76' height='76'%3E%3Crect x='12' y='11' width='76' height='76' rx='0' fill='%23fff'/%3E%3Crect x='16.56' y='39.12' width='66.88' height='3.42' rx='0' fill='%23000'/%3E%3Crect x='29.48' y='15.56' width='13.68' height='18.24' rx='6.84' fill='%23000'/%3E%3Crect x='56.84' y='15.56' width='13.68' height='18.24' rx='6.84' fill='%23000'/%3E%3C/mask%3E%3Cg mask='url(%23m9)'%3E%3Crect x='16.56' y='21.64' width='66.88' height='60.8' rx='13.68' fill='%23FFFFFF'/%3E%3C/g%3E%3Crect x='33.28' y='12.52' width='6.08' height='18.24' rx='3.04' fill='%23FFFFFF'/%3E%3Crect x='60.64' y='12.52' width='6.08' height='18.24' rx='3.04' fill='%23FFFFFF'/%3E%3Cpath d='M34.04 61.16 L45.44 71.8 L65.96 51.28' fill='none' stroke='%230B1F3A' stroke-width='7.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #0B1F3A;            /* bleu nuit Oui Mardi */
+    --surface: #10284A;
+    --surface-2: #153158;
+    --line: #1C3A63;
+    --line-strong: #2C4D7C;
+    --text: #FFFFFF;
+    --muted: #A7B6CC;
+    --accent: #FFFFFF;        /* couleur de marque : change-la ici */
+    --accent-soft: rgba(255, 255, 255, .10);
+    --accent-ink: #0B1F3A;
+    --danger: #FF9C8F;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--text); }
+  body {
+    font-family: "Inter Tight", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    min-height: 100vh; min-height: 100dvh;
+    display: flex; flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  a { color: inherit; }
+
+  /* En-tête + barre de progression */
+  .top {
+    position: sticky; top: 0; z-index: 5;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 20px;
+    background: rgba(11, 31, 58, .94);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 600; font-size: 17px; letter-spacing: -.01em; }
+  .brand b { color: var(--accent); font-weight: 700; }
+  .top .meta { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+  .progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; }
+  .progress i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .4s cubic-bezier(.2, .7, .2, 1); }
+
+  main { flex: 1; width: 100%; max-width: 640px; margin: 0 auto; padding: 44px 20px 40px; }
+
+  .step { animation: rise .34s cubic-bezier(.2, .7, .2, 1); }
+  @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+  .kicker { margin: 0; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+  h1 {
+    margin: 14px 0 10px;
+    font-weight: 600; font-size: clamp(27px, 6.6vw, 38px); line-height: 1.1; letter-spacing: -.025em;
+    text-wrap: balance;
+  }
+  h1:focus { outline: none; }
+  h1 em {
+    font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-weight: 400;
+    color: var(--accent); font-size: 1.14em; letter-spacing: 0;
+  }
+  .sub { margin: 0 0 28px; color: var(--muted); font-size: 15px; line-height: 1.5; }
+
+  /* Réponses en cartes */
+  .options { display: grid; grid-template-columns: 1fr; gap: 10px; }
+  @media (min-width: 620px) { .options.two { grid-template-columns: 1fr 1fr; } }
+  /* Question à choix multiples : 2 colonnes même sur téléphone, pour garder « Continuer » visible */
+  .options.compact { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .options.compact .opt { min-height: 54px; padding: 12px 12px 12px 14px; font-size: 15px; gap: 8px; }
+  .options.locked { pointer-events: none; }
+  .opt {
+    appearance: none; -webkit-appearance: none;
+    display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    min-height: 60px; padding: 16px 18px;
+    background: var(--surface); color: var(--text);
+    border: 1px solid var(--line-strong); border-radius: var(--radius);
+    font: inherit; font-size: 16px; line-height: 1.3; text-align: left;
+    cursor: pointer; transition: border-color .15s, background .15s, transform .1s;
+  }
+  .opt:hover { border-color: #46699C; background: var(--surface-2); }
+  .opt:active { transform: scale(.99); }
+  .opt[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
+  .tick {
+    flex: none; width: 20px; height: 20px; border-radius: 50%;
+    border: 1px solid var(--line-strong); display: grid; place-items: center;
+    transition: background .15s, border-color .15s;
+  }
+  .tick.sq { border-radius: 6px; }
+  .opt[aria-pressed="true"] .tick { background: var(--accent); border-color: var(--accent); }
+  .opt[aria-pressed="true"] .tick::after {
+    content: ""; width: 9px; height: 5px; margin-top: -2px;
+    border-left: 2px solid var(--accent-ink); border-bottom: 2px solid var(--accent-ink);
+    transform: rotate(-45deg);
+  }
+
+  /* Navigation */
+  .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 28px; }
+  .back {
+    background: none; border: 0; padding: 10px 0; cursor: pointer;
+    color: var(--muted); font: inherit; font-size: 12px; letter-spacing: .16em; text-transform: uppercase;
+  }
+  .back:hover { color: var(--text); }
+  .cta {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--accent); color: var(--accent-ink);
+    border: 0; border-radius: 999px; padding: 16px 26px;
+    font: inherit; font-weight: 600; font-size: 16px; text-decoration: none;
+    cursor: pointer; transition: filter .15s, opacity .15s;
+  }
+  .cta:hover { filter: brightness(1.06); }
+  .cta:disabled { opacity: .35; cursor: not-allowed; }
+  .cta.big { width: 100%; padding: 19px 26px; font-size: 17px; margin-top: 8px; }
+  .ghost { display: inline-block; margin-top: 8px; color: var(--accent); text-decoration: none; font-weight: 500; }
+  .ghost:hover { text-decoration: underline; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  /* Formulaire de contact */
+  .form .row { display: grid; grid-template-columns: 1fr; gap: 0 12px; }
+  @media (min-width: 440px) { .form .row { grid-template-columns: 1fr 1fr; } }
+  .field { margin-bottom: 14px; }
+  .field label { display: block; margin-bottom: 7px; font-size: 13px; color: var(--muted); }
+  .field input {
+    width: 100%; padding: 15px 14px;
+    background: var(--surface); color: var(--text);
+    border: 1px solid var(--line-strong); border-radius: 10px;
+    font: inherit; font-size: 16px;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  .field input::placeholder { color: #6E86A8; }
+  .field input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .field .msg { display: none; margin: 6px 0 0; font-size: 13px; color: var(--danger); }
+  .field.err input { border-color: var(--danger); }
+  .field.err .msg { display: block; }
+  .consent { display: flex; gap: 12px; align-items: flex-start; margin: 6px 0 4px; font-size: 13px; line-height: 1.5; color: var(--muted); cursor: pointer; }
+  .consent input { flex: none; width: 20px; height: 20px; margin: 1px 0 0; accent-color: var(--accent); }
+  .consent.err span { color: var(--danger); }
+  .consent a { color: var(--text); }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  /* Résultat */
+  .lead { margin: 0 0 22px; font-size: 17px; line-height: 1.55; color: var(--text); }
+  .lead + .lead { color: var(--muted); }
+  .gains { list-style: none; margin: 0 0 26px; padding: 18px 18px 6px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+  .gains p { margin: 0 0 12px; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+  .gains li { position: relative; padding: 0 0 12px 30px; font-size: 15px; line-height: 1.45; }
+  .gains li::before {
+    content: ""; position: absolute; left: 2px; top: 5px; width: 9px; height: 5px;
+    border-left: 2px solid var(--accent); border-bottom: 2px solid var(--accent); transform: rotate(-45deg);
+  }
+  .fine { margin: 14px 0 0; font-size: 13px; color: var(--muted); text-align: center; }
+
+  footer {
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px;
+    padding: 18px 20px; border-top: 1px solid var(--line);
+    font-size: 12px; color: var(--muted);
+  }
+  footer nav { display: flex; gap: 16px; }
+  footer a { text-decoration: none; }
+  footer a:hover { color: var(--text); }
+
+  .demo {
+    position: fixed; top: 64px; right: 12px; z-index: 10;
+    padding: 5px 10px; border-radius: 999px;
+    background: #2A2410; color: #F2D27A; border: 1px solid #4A3F17;
+    font-size: 12px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .step { animation: none; }
+    .progress i { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="./" aria-label="Oui Mardi, accueil">
+    <svg width="26" height="26" viewBox="0 0 100 100" aria-hidden="true">
+      <mask id="logo-cut" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+        <rect width="100" height="100" fill="#fff"/>
+        <rect x="6" y="37" width="88" height="4.5" fill="#000"/>
+        <rect x="23" y="6" width="18" height="24" rx="9" fill="#000"/>
+        <rect x="59" y="6" width="18" height="24" rx="9" fill="#000"/>
+      </mask>
+      <rect x="6" y="14" width="88" height="80" rx="18" fill="#FFFFFF" mask="url(#logo-cut)"/>
+      <rect x="28" y="2" width="8" height="24" rx="4" fill="#FFFFFF"/>
+      <rect x="64" y="2" width="8" height="24" rx="4" fill="#FFFFFF"/>
+      <path d="M29 66 L44 80 L71 53" fill="none" stroke="#0B1F3A" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span>oui mardi<b>.</b></span>
+  </a>
+  <span class="meta">Audit offert · 2 min</span>
+  <div class="progress" aria-hidden="true"><i id="bar"></i></div>
+</header>
+
+<main id="app"></main>
+
+<footer>
+  <span>© <span id="year">2026</span> Oui Mardi</span>
+  <nav>
+    <a id="legal" href="#">Mentions légales</a>
+    <a id="privacy" href="#">Confidentialité</a>
+  </nav>
+</footer>
+
+<div id="demo" class="demo" hidden>Mode démo · rien n'est envoyé</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* =========================================================
+     RÉGLAGES — c'est la seule partie à modifier
+     ========================================================= */
+  var CONFIG = {
+    brand: "Oui Mardi",
+    founder: "Joan",
+    // URL de l'Apps Script Google Sheets (voir LISEZMOI.md). Vide = mode démo.
+    endpoint: "https://script.google.com/macros/s/AKfycbwlgQjZRLqJFU3L3153GUygSO72AYrYcAumh9QCcw7i9lV_djGtrcWBZmGMrLxOaBN8/exec",
+    // Ton lien de réservation (Calendly, Cal.com, Google Agenda…)
+    bookingUrl: "https://calendly.com/joanblot/15-minutes-avec-joan",
+    // Pré-remplit nom + e-mail sur la page de réservation (Calendly et Cal.com le gèrent)
+    prefillBooking: true,
+    instagramUrl: "https://www.instagram.com/joan_ouimardi/",
+    legalUrl: "#",
+    privacyUrl: "#"
+  };
+
+  /* Les questions. q accepte <em>…</em> pour le mot en italique couleur. */
+  var STEPS = [
+    { id: "secteur", type: "single", cols: 2,
+      q: "Dans quel <em>secteur</em> êtes-vous ?",
+      sub: "On adapte l'audit à votre marché.",
+      options: [["conseil", "Conseil & services B2B"], ["tech", "Tech, SaaS & ESN"], ["industrie", "Industrie & négoce"],
+                ["formation", "Formation & coaching B2B"], ["immo", "Immobilier & finance"], ["autre", "Autre"]] },
+    { id: "ca", type: "single", cols: 1,
+      q: "Quel est le <em>chiffre d'affaires</em> annuel de l'entreprise ?",
+      sub: "Pour vérifier que notre accompagnement est adapté à votre stade.",
+      options: [["lt300", "Moins de 300 k€"], ["300k-1m", "300 k€ à 1 M€"], ["1-5m", "1 à 5 M€"], ["5-20m", "5 à 20 M€"], ["gt20m", "Plus de 20 M€"]] },
+    { id: "panier", type: "single", cols: 1,
+      q: "Combien vous rapporte un <em>nouveau client</em> ?",
+      sub: "En moyenne, sur la première année. C'est ce qui fixe la valeur d'un rendez-vous.",
+      options: [["lt2k", "Moins de 2 000 €"], ["2-10k", "2 000 à 10 000 €"], ["10-50k", "10 000 à 50 000 €"], ["gt50k", "Plus de 50 000 €"]] },
+    { id: "equipe", type: "single", cols: 2,
+      q: "Qui <em>vend</em> chez vous aujourd'hui ?",
+      sub: "Pour savoir à qui on transmet les rendez-vous.",
+      options: [["dirigeant", "Moi, le dirigeant"], ["1-3", "1 à 3 commerciaux"], ["4-10", "4 à 10 commerciaux"], ["gt10", "Plus de 10 commerciaux"]] },
+    { id: "rdv_mois", type: "single", cols: 2,
+      q: "Combien de <em>rendez-vous</em> commerciaux par mois ?",
+      sub: "Avec des prospects qui pourraient signer, pas les réunions internes.",
+      options: [["0-5", "0 à 5"], ["5-15", "5 à 15"], ["15-40", "15 à 40"], ["gt40", "Plus de 40"]] },
+    { id: "sources", type: "multi", cols: 2,
+      q: "D'où viennent vos <em>clients</em> aujourd'hui ?",
+      sub: "Plusieurs réponses possibles.",
+      options: [["bouche", "Bouche-à-oreille"], ["linkedin", "LinkedIn"], ["cold", "Appels à froid"], ["emailing", "E-mailing"],
+                ["pub", "Publicité en ligne"], ["salons", "Salons & événements"], ["site", "Site internet & SEO"], ["autre", "Autre"]] },
+    { id: "no_show", type: "single", cols: 2,
+      q: "Sur 10 rendez-vous posés, combien de <em>lapins</em> ?",
+      sub: "Votre taux de no-show, à peu près.",
+      options: [["0-1", "0 ou 1"], ["2-3", "2 ou 3"], ["4+", "4 ou plus"], ["nsp", "Je ne mesure pas"]] },
+    { id: "blocage", type: "single", cols: 1,
+      q: "Votre principal <em>blocage</em> aujourd'hui ?",
+      sub: "Celui qui vous coûte le plus cher.",
+      options: [["volume", "Pas assez de rendez-vous"], ["qualite", "Des rendez-vous qui ne mènent à rien"], ["noshow", "Trop de no-show"],
+                ["temps", "Pas le temps de prospecter"], ["closing", "Une équipe qui ne transforme pas"]] },
+    { id: "delegation", type: "single", cols: 2,
+      q: "Avez-vous déjà <em>délégué</em> votre prospection ?",
+      sub: "Pour savoir ce qui a déjà été tenté.",
+      options: [["non", "Non, jamais"], ["agence", "Oui, à une agence"], ["freelance", "Oui, à un freelance"], ["interne", "Oui, en interne (SDR, setter)"]] },
+    { id: "demarrage", type: "single", cols: 1,
+      q: "Quand voulez-vous <em>démarrer</em> ?",
+      sub: "Pour caler notre planning sur le vôtre.",
+      options: [["now", "Dès ce mois-ci"], ["3m", "Dans les 3 prochains mois"], ["info", "Je me renseigne pour plus tard"]] },
+    { id: "decideur", type: "single", cols: 1,
+      q: "Êtes-vous <em>décisionnaire</em> sur ce sujet ?",
+      sub: "Pour inviter les bonnes personnes à l'audit.",
+      options: [["oui", "Oui"], ["associe", "Je décide avec un associé"], ["non", "Non, je prépare le dossier"]] },
+    { id: "contact", type: "contact",
+      q: "Dernière étape : <em>où</em> vous répondre ?",
+      sub: "Votre résultat s'affiche juste après." }
+  ];
+
+  /* Règles de qualification : chaque règle remplie fait passer la demande en « À nourrir ».
+     Toutes les demandes sont enregistrées dans le Sheet, qualifiées ou non. */
+  var RULES = [
+    { id: "ca", is: "lt300", motif: "CA < 300 k€" },
+    { id: "panier", is: "lt2k", motif: "Panier < 2 000 €" },
+    { id: "demarrage", is: "info", motif: "Se renseigne" }
+  ];
+
+  var GAINS = [
+    "Votre taux de transformation, du premier contact à la signature",
+    "Les 3 endroits où votre process perd des rendez-vous",
+    "Un plan d'action concret pour les 90 prochains jours"
+  ];
+
+  /* ========================================================= */
+
+  var TOTAL = STEPS.length;
+  var KEY = "ouimardi-audit-v1";
+  var app = document.getElementById("app");
+  var bar = document.getElementById("bar");
+  var done = false;
+  var state = { i: 0, a: {} };
+
+  try {
+    var saved = JSON.parse(sessionStorage.getItem(KEY) || "null");
+    if (saved && typeof saved.i === "number" && saved.a && saved.i < TOTAL) state = saved;
+  } catch (e) { /* stockage indisponible : on repart de zéro */ }
+
+  function save() { try { sessionStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  function clearSaved() { try { sessionStorage.removeItem(KEY); } catch (e) {} }
+
+  var params = new URLSearchParams(location.search);
+  var UTM = {};
+  ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach(function (k) { UTM[k] = params.get(k) || ""; });
+
+  function el(tag, attrs) {
+    var n = document.createElement(tag);
+    if (attrs) Object.keys(attrs).forEach(function (k) {
+      var v = attrs[k];
+      if (v === false || v == null) return;
+      if (k === "class") n.className = v;
+      else if (k === "html") n.innerHTML = v;
+      else if (k.indexOf("on") === 0) n.addEventListener(k.slice(2), v);
+      else n.setAttribute(k, v === true ? "" : v);
+    });
+    for (var j = 2; j < arguments.length; j++) {
+      var c = arguments[j];
+      if (c == null) continue;
+      if (Array.isArray(c)) c.forEach(function (x) { if (x != null) n.append(x); });
+      else n.append(c);
+    }
+    return n;
+  }
+
+  function stepById(id) { return STEPS.filter(function (s) { return s.id === id; })[0]; }
+  function label(id, key) {
+    var s = stepById(id);
+    if (!s || !s.options) return "";
+    var keys = Array.isArray(key) ? key : [key];
+    return s.options.filter(function (o) { return keys.indexOf(o[0]) > -1; }).map(function (o) { return o[1]; }).join(" | ");
+  }
+  function plain(html) { var d = document.createElement("div"); d.innerHTML = html; return d.textContent; }
+  function setProgress(x) { bar.style.width = (x * 100) + "%"; }
+
+  /* Le bouton « retour » du téléphone recule d'une question au lieu de quitter la page. */
+  var depth = 0;
+  function go(i) {
+    state.i = Math.max(0, Math.min(i, TOTAL - 1));
+    save();
+    render();
+  }
+  function next() { depth++; history.pushState({ i: state.i + 1 }, ""); go(state.i + 1); }
+  function prev() {
+    if (depth > 0) { history.back(); return; }
+    history.replaceState({ i: state.i - 1 }, "");
+    go(state.i - 1);
+  }
+
+  window.addEventListener("popstate", function (e) {
+    if (done) return;
+    var i = e.state && typeof e.state.i === "number" ? e.state.i : 0;
+    depth = Math.max(0, depth + (i < state.i ? -1 : 1));
+    go(i);
+  });
+
+  function nav(cta) {
+    return el("div", { class: "nav" },
+      state.i > 0 ? el("button", { type: "button", class: "back", onclick: prev }, "← Retour") : el("span"),
+      cta || null);
+  }
+
+  function single(s) {
+    var box = el("div", { class: "options" + (s.cols === 2 ? " two" : ""), role: "group", "aria-label": plain(s.q) });
+    s.options.forEach(function (o) {
+      var b = el("button", { type: "button", class: "opt", "aria-pressed": String(state.a[s.id] === o[0]) },
+        el("span", null, o[1]), el("span", { class: "tick", "aria-hidden": "true" }));
+      b.addEventListener("click", function () {
+        state.a[s.id] = o[0];
+        box.querySelectorAll(".opt").forEach(function (x) { x.setAttribute("aria-pressed", "false"); });
+        b.setAttribute("aria-pressed", "true");
+        box.classList.add("locked");
+        setTimeout(next, 230);
+      });
+      box.append(b);
+    });
+    return el("div", null, box, state.i > 0 ? nav(null) : null);
+  }
+
+  function multi(s) {
+    var sel = (state.a[s.id] || []).slice();
+    var cta = el("button", { type: "button", class: "cta" }, "Continuer →");
+    function sync() { cta.disabled = sel.length === 0; }
+    var box = el("div", { class: "options compact", role: "group", "aria-label": plain(s.q) });
+    s.options.forEach(function (o) {
+      var b = el("button", { type: "button", class: "opt", "aria-pressed": String(sel.indexOf(o[0]) > -1) },
+        el("span", null, o[1]), el("span", { class: "tick sq", "aria-hidden": "true" }));
+      b.addEventListener("click", function () {
+        var k = sel.indexOf(o[0]);
+        if (k > -1) sel.splice(k, 1); else sel.push(o[0]);
+        b.setAttribute("aria-pressed", String(k === -1));
+        state.a[s.id] = sel.slice(); save(); sync();
+      });
+      box.append(b);
+    });
+    cta.addEventListener("click", function () { if (sel.length) next(); });
+    sync();
+    return el("div", null, box, nav(cta));
+  }
+
+  function contact() {
+    var a = state.a.contact || {};
+    var f = el("form", { class: "form", novalidate: true });
+
+    function field(name, text, type, auto, opts) {
+      opts = opts || {};
+      var id = "f-" + name;
+      var inp = el("input", { id: id, name: name, type: type, autocomplete: auto, inputmode: opts.inputmode || null,
+        placeholder: opts.ph || null, "aria-describedby": id + "-msg" });
+      inp.value = a[name] || "";
+      var wrap = el("div", { class: "field" }, el("label", { for: id }, text), inp, el("p", { class: "msg", id: id + "-msg" }));
+      inp.addEventListener("input", function () {
+        state.a.contact = state.a.contact || {};
+        state.a.contact[name] = inp.value; save();
+        wrap.classList.remove("err");
+      });
+      return wrap;
+    }
+
+    var consent = el("input", { type: "checkbox", name: "consent" });
+    var consentRow = el("label", { class: "consent" }, consent,
+      el("span", { html: "J'accepte d'être recontacté·e par " + CONFIG.brand + " au sujet de ma demande. Mes données ne sont jamais revendues. " +
+        '<a href="' + CONFIG.privacyUrl + '" target="_blank" rel="noopener">Confidentialité</a>' }));
+    consent.addEventListener("change", function () { consentRow.classList.remove("err"); });
+
+    var submit = el("button", { type: "submit", class: "cta" }, "Voir mon résultat →");
+
+    f.append(
+      el("div", { class: "row" }, field("prenom", "Prénom", "text", "given-name"), field("nom", "Nom", "text", "family-name")),
+      field("entreprise", "Entreprise", "text", "organization"),
+      field("email", "E-mail professionnel", "email", "email", { ph: "vous@entreprise.fr" }),
+      field("telephone", "Téléphone", "tel", "tel", { ph: "06 12 34 56 78" }),
+      field("site", "Site web (facultatif)", "text", "url", { inputmode: "url", ph: "entreprise.fr" }),
+      el("div", { class: "hp", "aria-hidden": "true" }, el("label", null, "Ne pas remplir ", el("input", { name: "website2", tabindex: "-1", autocomplete: "off" }))),
+      consentRow,
+      nav(submit)
+    );
+
+    f.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!validate(f, consentRow)) return;
+      submit.disabled = true; submit.textContent = "Envoi…";
+      var c = {};
+      ["prenom", "nom", "entreprise", "email", "telephone", "site"].forEach(function (n) { c[n] = f.elements[n].value.trim(); });
+      state.a.contact = c;
+      var q = qualify(state.a);
+      var isBot = !!f.elements.website2.value;
+      (isBot ? Promise.resolve() : send(payload(c, q))).then(function () {
+        done = true; clearSaved(); result(q, c);
+      });
+    });
+    return f;
+  }
+
+  function validate(f, consentRow) {
+    var ok = true, first = null;
+    function v(n) { return f.elements[n].value.trim(); }
+    function err(n, m) {
+      var w = f.elements[n].closest(".field");
+      w.classList.add("err"); w.querySelector(".msg").textContent = m;
+      ok = false; first = first || f.elements[n];
+    }
+    if (!v("prenom")) err("prenom", "Indiquez votre prénom");
+    if (!v("nom")) err("nom", "Indiquez votre nom");
+    if (!v("entreprise")) err("entreprise", "Indiquez votre entreprise");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v("email"))) err("email", "Adresse e-mail invalide");
+    if ((v("telephone").match(/\d/g) || []).length < 9) err("telephone", "Numéro de téléphone invalide");
+    if (!f.elements.consent.checked) { consentRow.classList.add("err"); ok = false; first = first || f.elements.consent; }
+    if (first) first.focus();
+    return ok;
+  }
+
+  function qualify(a) {
+    var motifs = RULES.filter(function (r) { return a[r.id] === r.is; }).map(function (r) { return r.motif; });
+    return { ok: motifs.length === 0, motifs: motifs };
+  }
+
+  function payload(c, q) {
+    var a = state.a, p = {
+      date: new Date().toISOString(),
+      statut: q.ok ? "Qualifié" : "À nourrir",
+      motif: q.motifs.join(", "),
+      prenom: c.prenom, nom: c.nom, entreprise: c.entreprise, email: c.email, telephone: c.telephone, site: c.site,
+      page: location.origin + location.pathname,
+      referrer: document.referrer || ""
+    };
+    STEPS.forEach(function (s) { if (s.options) p[s.id] = label(s.id, a[s.id]); });
+    Object.keys(UTM).forEach(function (k) { p[k] = UTM[k]; });
+    return p;
+  }
+
+  function send(p) {
+    if (!CONFIG.endpoint) { console.info("[Mode démo] Demande non envoyée :", p); return Promise.resolve(); }
+    var ctrl = "AbortController" in window ? new AbortController() : null;
+    var t = setTimeout(function () { if (ctrl) ctrl.abort(); }, 8000);
+    return fetch(CONFIG.endpoint, {
+      method: "POST", mode: "no-cors", keepalive: true,
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(p), signal: ctrl ? ctrl.signal : undefined
+    }).catch(function (e) { console.warn("Envoi impossible", e); })
+      .then(function () { clearTimeout(t); });
+  }
+
+  function bookingHref(c) {
+    try {
+      var u = new URL(CONFIG.bookingUrl);
+      if (CONFIG.prefillBooking) { u.searchParams.set("name", c.prenom + " " + c.nom); u.searchParams.set("email", c.email); }
+      return u.toString();
+    } catch (e) { return CONFIG.bookingUrl; }
+  }
+
+  function result(q, c) {
+    setProgress(1);
+    history.replaceState({ i: TOTAL - 1, done: true }, "");
+    var h, w = el("section", { class: "step" }, el("p", { class: "kicker" }, "Votre résultat"));
+    if (q.ok) {
+      h = el("h1", { tabindex: "-1", html: "Bonne nouvelle : c'est <em>oui</em>." });
+      w.append(h,
+        el("p", { class: "lead" }, c.prenom + ", votre profil est éligible à l'audit. Choisissez votre créneau : 30 minutes en visio avec " + CONFIG.founder + ", sans engagement."),
+        el("div", { class: "gains" }, el("p", null, "Vous repartez avec"), el("ul", { style: "margin:0;padding:0;list-style:none" }, GAINS.map(function (g) { return el("li", null, g); }))),
+        el("a", { class: "cta big", href: bookingHref(c) }, "Choisir mon créneau →"),
+        el("p", { class: "fine" }, "Mardi, ça vous va ?"));
+    } else {
+      h = el("h1", { tabindex: "-1", html: "Pas <em>tout de suite</em>." });
+      w.append(h,
+        el("p", { class: "lead" }, "Merci " + c.prenom + ". À votre stade, l'audit n'est pas le bon format. On préfère vous le dire maintenant plutôt que de vous faire perdre 30 minutes."),
+        el("p", { class: "lead" }, "On revient vers vous par e-mail avec des ressources pour structurer votre prise de rendez-vous."),
+        el("a", { class: "ghost", href: CONFIG.instagramUrl, target: "_blank", rel: "noopener" }, "Suivre " + CONFIG.brand + " sur Instagram →"));
+    }
+    app.replaceChildren(w);
+    window.scrollTo(0, 0);
+    h.focus({ preventScroll: true });
+  }
+
+  function render() {
+    var s = STEPS[state.i];
+    setProgress(state.i / TOTAL);
+    var h = el("h1", { tabindex: "-1", html: s.q });
+    var body = s.type === "single" ? single(s) : s.type === "multi" ? multi(s) : contact();
+    app.replaceChildren(el("section", { class: "step" },
+      el("p", { class: "kicker" }, "Étape " + (state.i + 1) + " / " + TOTAL),
+      h,
+      s.sub ? el("p", { class: "sub" }, s.sub) : null,
+      body));
+    window.scrollTo(0, 0);
+    if (state.i > 0) h.focus({ preventScroll: true });
+  }
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+  document.getElementById("legal").href = CONFIG.legalUrl;
+  document.getElementById("privacy").href = CONFIG.privacyUrl;
+  if (!CONFIG.endpoint) document.getElementById("demo").hidden = false;
+
+  history.replaceState({ i: state.i }, "");
+  render();
+})();
+</script>
+</body>
+</html>

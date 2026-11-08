@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Audit de prise de rendez-vous · oui mardi.</title>
+  <script>
+    // Lien de la bio Instagram : on garde les paramètres reçus (utm, fbclid), sinon on pose le suivi Instagram par défaut.
+    var q = location.search || '?utm_source=ig&utm_medium=social&utm_content=link_in_bio';
+    location.replace('/audit/' + q + location.hash);
+  </script>
+  <meta http-equiv="refresh" content="0; url=/audit/?utm_source=ig&utm_medium=social&utm_content=link_in_bio">
+</head>
+<body style="margin:0;min-height:100vh;display:grid;place-items:center;background:#0a1f3a;color:#fff;font:500 17px/1.5 system-ui,sans-serif">
+  <a style="color:#fff" href="/audit/?utm_source=ig&utm_medium=social&utm_content=link_in_bio">Accéder à l’audit</a>
+</body>
+</html>
