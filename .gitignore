@@ -1,0 +1,8 @@
+# notes internes, non publiées
+README.md
+DESIGN.md
+# fichiers d'origine de la marque : seuls ceux utilisés par la page sont publiés
+assets/marque/*
+!assets/marque/2.webp
+!assets/marque/11.png
+assets/fondateur.webp

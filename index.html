@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>oui mardi. — Joan Blot, freelance en cold call B2B</title>
+  <meta name="description" content="Joan Blot, freelance et fondateur de oui mardi. : j’appelle vos cibles, je qualifie chaque prospect au téléphone et je cale des rendez-vous B2B qualifiés dans votre agenda. Plus de 160 rendez-vous posés.">
+  <meta property="og:title" content="oui mardi. — Votre prochain oui, c’est mardi.">
+  <meta property="og:description" content="Freelance en cold call B2B : ciblage, appels, qualification au téléphone, rendez-vous calés dans votre agenda.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ouimardi.fr/">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:image" content="https://ouimardi.fr/assets/marque/2.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://ouimardi.fr/">
+  <meta name="theme-color" content="#0a1f3a">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="icon" type="image/png" href="assets/marque/11.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Inter+Tight:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip" href="#contenu">Aller au contenu</a>
+
+  <div class="progress" aria-hidden="true"><span></span></div>
+  <div class="cursor" aria-hidden="true"><span class="cursor-dot"></span><span class="cursor-ring"></span></div>
+
+  <!-- Navigation -->
+  <header class="nav" id="nav">
+    <div class="nav-in">
+      <a class="nav-logo" href="#top" aria-label="oui mardi. — accueil">
+        <img src="assets/logos/oui-mardi-logo.png" alt="oui mardi." width="1835" height="452">
+      </a>
+      <nav class="nav-links" aria-label="Navigation principale">
+        <a href="#qualification" data-link>Qualification</a>
+        <a href="#methode" data-link>Méthode</a>
+        <a href="#fondateur" data-link>Qui suis-je</a>
+        <a href="#difference" data-link>Pourquoi un freelance</a>
+        <a href="#faq" data-link>FAQ</a>
+      </nav>
+      <a class="btn btn--solid btn--sm nav-cta" href="#contact" data-booking data-magnetic>
+        Réserver un appel
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+    </div>
+    <div class="menu" id="menu" hidden>
+      <a href="#qualification">Qualification</a>
+      <a href="#methode">Méthode</a>
+      <a href="#fondateur">Qui suis-je</a>
+      <a href="#difference">Pourquoi un freelance</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn--solid" href="#contact" data-booking>Réserver un appel</a>
+    </div>
+  </header>
+
+  <main id="contenu">
+
+    <!-- 1. Hero -->
+    <section class="hero s-nuit" id="top">
+      <svg class="motif motif--hero" data-parallax="0.12" viewBox="0 0 400 400" aria-hidden="true">
+        <use href="#motif"/>
+      </svg>
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <h1 class="h-display" data-split>Votre prochain<br class="br-d"> <em>oui</em>, c’est mardi.</h1>
+          <p class="lead" data-reveal style="--d:.35s">J’appelle vos cibles, je qualifie chaque prospect au téléphone et je cale les rendez-vous directement dans votre agenda. Vous n’avez plus qu’à vous présenter.</p>
+          <div class="cta-row" data-reveal style="--d:.5s">
+            <a class="btn btn--solid" href="#contact" data-booking data-magnetic>
+              Réserver mon mardi
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn--ghost" href="#methode" data-magnetic>Voir la méthode</a>
+          </div>
+        </div>
+
+        <div class="hero-visual" data-reveal style="--d:.3s">
+          <div class="agenda tilt" data-tilt id="agenda" aria-hidden="true">
+            <div class="ag-head">
+              <div>
+                <span class="mono">Votre agenda</span>
+                <strong class="ag-week" id="agWeek">Semaine prochaine</strong>
+              </div>
+              <span class="ag-count"><b id="agCount">0</b> RDV qualifiés</span>
+            </div>
+            <div class="ag-grid" id="agGrid"></div>
+            <div class="ag-toast" id="agToast">
+              <span class="dot-ok"></span>
+              <div><b>Nouveau RDV qualifié</b><span id="agToastTxt">—</span></div>
+            </div>
+            <span class="tilt-glow"></span>
+          </div>
+          <p class="sr-only">Illustration : un agenda hebdomadaire qui se remplit de rendez-vous qualifiés, avec une concentration le mardi.</p>
+        </div>
+      </div>
+
+      <!-- Preuve -->
+      <div class="wrap proof">
+        <div class="proof-stat" data-reveal>
+          <span class="stat"><span>+</span><span data-count="160">0</span></span>
+          <span class="stat-label">rendez-vous B2B qualifiés posés</span>
+        </div>
+        <div class="proof-logos" data-reveal style="--d:.15s">
+          <p class="proof-title">Ils m’ont confié leur agenda</p>
+          <div class="marquee" aria-label="Clients : Belombre, fonio.ai, Clevizio, Rushh, ETHIC et d’autres">
+            <div class="marquee-track">
+              <ul class="logos">
+                <li><img src="assets/logos/belombre.png" alt="Belombre" height="30"></li>
+                <li><img src="assets/logos/fonio.png" alt="fonio.ai" height="30"></li>
+                <li><img src="assets/logos/clevizio.png" alt="Clevizio" height="30"></li>
+                <li><img src="assets/logos/rushh.png" alt="Rushh" height="30"></li>
+                <li><img src="assets/logos/ethic.png" alt="ETHIC" height="30"></li>
+                <li><img src="assets/logos/and-more.png" alt="et d’autres" height="30"></li>
+              </ul>
+              <ul class="logos" aria-hidden="true">
+                <li><img src="assets/logos/belombre.png" alt="" height="30"></li>
+                <li><img src="assets/logos/fonio.png" alt="" height="30"></li>
+                <li><img src="assets/logos/clevizio.png" alt="" height="30"></li>
+                <li><img src="assets/logos/rushh.png" alt="" height="30"></li>
+                <li><img src="assets/logos/ethic.png" alt="" height="30"></li>
+                <li><img src="assets/logos/and-more.png" alt="" height="30"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Le constat -->
+    <section class="constat s-papier" id="constat">
+      <div class="wrap">
+        <h2 class="h-xl" data-split>Vos commerciaux ne manquent pas de rendez-vous. Ils manquent de <em>bons</em> rendez-vous.</h2>
+        <div class="pairs">
+          <article class="pair" data-reveal>
+            <div class="pair-pain">
+              <span class="num">01</span>
+              <h3>Des curieux, pas des acheteurs</h3>
+              <p>Des rendez-vous pris sans budget, sans décideur, sans urgence. Votre équipe y laisse ses meilleures heures.</p>
+            </div>
+            <div class="pair-sol">
+              <span class="sol-title">La réponse oui mardi.</span>
+              <ul><li>Besoin, décideur, budget et timing validés au téléphone</li><li>Pas de quatre oui, pas de rendez-vous</li><li>Les autres sont rappelés au bon moment</li></ul>
+            </div>
+          </article>
+          <article class="pair" data-reveal style="--d:.1s">
+            <div class="pair-pain">
+              <span class="num">02</span>
+              <h3>Des agendas troués</h3>
+              <p>Sans confirmation ni rappel, les absences et les reports s’enchaînent. Le créneau est perdu, la semaine aussi.</p>
+            </div>
+            <div class="pair-sol">
+              <span class="sol-title">La réponse oui mardi.</span>
+              <ul><li>Invitation envoyée dès la fin de l’appel</li><li>Rappel téléphonique la veille</li><li>Reprogrammation en cas d’absence</li></ul>
+            </div>
+          </article>
+          <article class="pair" data-reveal>
+            <div class="pair-pain">
+              <span class="num">03</span>
+              <h3>Des appels qu’on repousse</h3>
+              <p>Enchaîner les appels de prospection, puis closer&nbsp;: ce sont deux métiers. Faire les deux, c’est souvent mal faire l’un des deux.</p>
+            </div>
+            <div class="pair-sol">
+              <span class="sol-title">La réponse oui mardi.</span>
+              <ul><li>Des sessions d’appels chaque semaine, sans relâche</li><li>Un pitch écrit pour vos cibles</li><li>Vous ne gérez plus que les rendez-vous</li></ul>
+            </div>
+          </article>
+          <article class="pair" data-reveal style="--d:.1s">
+            <div class="pair-pain">
+              <span class="num">04</span>
+              <h3>Un pipeline qui dépend du réseau</h3>
+              <p>Le bouche-à-oreille finit toujours par plafonner. Et un bon mois ne garantit jamais le suivant.</p>
+            </div>
+            <div class="pair-sol">
+              <span class="sol-title">La réponse oui mardi.</span>
+              <ul><li>Une liste de cibles construite pour vous</li><li>Un flux de rendez-vous régulier</li><li>Un brief avant chaque rendez-vous</li></ul>
+            </div>
+          </article>
+        </div>
+        <p class="strike-line" data-strike>
+          <span>Moins de rendez-vous <span class="strike">curieux<i></i></span>.</span>
+          <span>Plus de rendez-vous <em>qualifiés</em>.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- 3. Qualification -->
+    <section class="qualif s-nuit" id="qualification">
+      <div class="wrap qualif-grid">
+        <div class="qualif-copy">
+          <h2 class="h-lg" data-split>Un rendez-vous n’arrive dans votre agenda que s’il dit <em>oui</em> quatre fois.</h2>
+          <p class="body" data-reveal>Chaque prospect est passé au crible pendant l’appel, de vive voix. Si un critère manque, je ne pose pas le rendez-vous&nbsp;: je le rappelle au bon moment.</p>
+          <ol class="crit-list" data-reveal>
+            <li data-crit="0"><span class="crit-ico"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><div><b>Le besoin est réel</b><span>Un problème identifié, qu’il veut régler.</span></div></li>
+            <li data-crit="1"><span class="crit-ico"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><div><b>Le décideur est présent</b><span>Celui qui signe, ou qui le fera signer.</span></div></li>
+            <li data-crit="2"><span class="crit-ico"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><div><b>Le budget existe</b><span>Prévu, ou finançable à court terme.</span></div></li>
+            <li data-crit="3"><span class="crit-ico"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><div><b>Le timing est le bon</b><span>Une décision envisagée dans les prochains mois.</span></div></li>
+          </ol>
+        </div>
+
+        <div class="qualif-visual" data-reveal style="--d:.2s">
+          <div class="call tilt" data-tilt id="call" aria-hidden="true">
+            <div class="call-head">
+              <span class="call-av">SL</span>
+              <div class="call-who"><b>Appel en cours</b><span>Directrice commerciale · Logiciel RH</span></div>
+              <span class="call-timer mono" id="callTimer">00:00</span>
+            </div>
+            <div class="call-wave" id="callWave"></div>
+            <div class="call-lines" id="callLines"></div>
+            <div class="call-crit" id="callCrit">
+              <span data-c="0">Besoin</span><span data-c="1">Décideur</span><span data-c="2">Budget</span><span data-c="3">Timing</span>
+            </div>
+            <div class="call-booked" id="callBooked">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="4"/><path d="M8 3v4M16 3v4M3.5 10h17M9 15l2 2 4-4"/></svg>
+              <div><b>Rendez-vous calé</b><span id="callBookedTxt">Mardi · 14:30</span></div>
+            </div>
+            <span class="tilt-glow"></span>
+          </div>
+          <p class="sr-only">Illustration : la transcription d’un appel de qualification où les quatre critères sont validés un par un, jusqu’à la prise de rendez-vous un mardi.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Méthode (défilement horizontal épinglé) -->
+    <section class="methode s-papier" id="methode">
+      <div class="h-scroll" id="hScroll">
+        <div class="h-sticky">
+          <div class="wrap methode-head">
+            <div class="methode-title">
+              <h2 class="h-lg" data-split>Cinq étapes.<br class="br-d"> Un seul objectif&nbsp;: <em>mardi</em>.</h2>
+              <div class="h-progress" aria-hidden="true"><span id="hBar"></span></div>
+            </div>
+          </div>
+          <div class="h-track" id="hTrack">
+            <article class="step">
+              <div class="step-top"><span class="num">01</span></div>
+              <h3>Ciblage</h3>
+              <p>On définit ensemble votre client idéal&nbsp;: secteur, taille, rôle, signaux d’achat. Puis je construis la liste, contact par contact.</p>
+              <div class="step-vis vis-tags" aria-hidden="true">
+                <span class="on">SaaS B2B</span><span class="on">20–200 pers.</span><span>Industrie</span><span class="on">Dir. commercial</span><span>Retail</span><span class="on">Levée récente</span><span>Freelance</span><span class="on">France</span>
+              </div>
+            </article>
+            <article class="step">
+              <div class="step-top"><span class="num">02</span></div>
+              <h3>Le cold call</h3>
+              <p>Des appels, uniquement des appels. Un pitch écrit pour vos cibles, et des relances jusqu’à joindre le bon interlocuteur, en direct.</p>
+              <div class="step-vis vis-log" aria-hidden="true">
+                <div><span class="mono">Lun. 09:12</span><span>Messagerie</span></div>
+                <div><span class="mono">Mer. 16:40</span><span>Rappel demandé</span></div>
+                <div class="ok"><span class="mono">Jeu. 10:05</span><span>Décideur en ligne</span></div>
+              </div>
+            </article>
+            <article class="step">
+              <div class="step-top"><span class="num">03</span></div>
+              <h3>Qualification</h3>
+              <p>Besoin, décideur, budget, timing. Pas de quatre oui, pas de rendez-vous. C’est la règle.</p>
+              <div class="step-vis vis-checks" aria-hidden="true">
+                <span>Besoin</span><span>Décideur</span><span>Budget</span><span>Timing</span>
+              </div>
+            </article>
+            <article class="step">
+              <div class="step-top"><span class="num">04</span></div>
+              <h3>Prise de rendez-vous</h3>
+              <p>Le créneau est posé dans votre agenda pendant l’appel, puis l’invitation part au prospect, rappelé la veille.</p>
+              <div class="step-vis vis-week" aria-hidden="true">
+                <span>L</span><span class="is-tue">M</span><span>M</span><span>J</span><span>V</span>
+                <i></i><i class="is-tue"><b>14:30</b></i><i></i><i></i><i></i>
+              </div>
+            </article>
+            <article class="step">
+              <div class="step-top"><span class="num">05</span></div>
+              <h3>Le brief</h3>
+              <p>Vous recevez une fiche&nbsp;: qui vous rencontrez, pourquoi maintenant, l’enjeu, les objections possibles.</p>
+              <div class="step-vis vis-brief" aria-hidden="true">
+                <div class="brief-row"><span>Contact</span><b>Directrice commerciale</b></div>
+                <div class="brief-row"><span>Enjeu</span><b>Pipeline à doubler d’ici juin</b></div>
+                <div class="brief-row"><span>Créneau</span><b>Mardi · 14:30</b></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Fondateur -->
+    <section class="fondateur s-nuit" id="fondateur">
+      <svg class="motif motif--left" data-parallax="-0.08" viewBox="0 0 400 400" aria-hidden="true"><use href="#motif"/></svg>
+      <div class="wrap fondateur-grid">
+        <figure class="portrait" data-reveal>
+          <div class="portrait-frame" data-parallax-inner>
+            <img src="assets/fondateur.jpg" alt="Portrait de Joan Blot" width="900" height="900" loading="lazy">
+          </div>
+        </figure>
+        <div class="fondateur-copy">
+          <blockquote class="h-lg quote" data-split>«&nbsp;Je ne vends pas des rendez-vous. Je vends des <em>mardis</em> où il se passe quelque chose.&nbsp;»</blockquote>
+          <p class="signature" data-reveal><b>Joan Blot</b> · Fondateur de oui mardi. · Freelance</p>
+          <p class="body" data-reveal>oui mardi., ce n’est pas une agence&nbsp;: c’est moi. Je travaille en freelance, et c’est moi qui décroche le téléphone pour vous, du premier appel jusqu’au rendez-vous calé dans votre agenda.</p>
+          <p class="body" data-reveal>Pas d’intermédiaire, pas de chef de projet, pas d’équipe qui tourne&nbsp;: vous savez toujours qui parle en votre nom. Mon métier, c’est appeler, relancer, qualifier et caler. Le vôtre, c’est vendre.</p>
+          <div class="facts" data-reveal>
+            <div><b><span>+</span><span data-count="160">0</span></b><span>rendez-vous qualifiés posés</span></div>
+            <div><b>100&nbsp;%</b><span>cold call B2B</span></div>
+            <div><b>1</b><span>seul interlocuteur&nbsp;: moi</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. La différence -->
+    <section class="difference s-papier" id="difference">
+      <div class="wrap">
+        <div class="difference-head">
+          <h2 class="h-xl" data-split>Un freelance qui appelle. Pas une agence qui <em>automatise</em>.</h2>
+        </div>
+        <div class="compare">
+          <div class="compare-col compare-col--us" data-dark data-reveal>
+            <div class="compare-title"><img src="assets/logos/oui-mardi-logo.png" alt="oui mardi." height="24"></div>
+            <ul>
+              <li>Un seul interlocuteur&nbsp;: celui qui appelle</li>
+              <li>Uniquement du cold call, de vive voix</li>
+              <li>Quatre critères validés avant chaque rendez-vous</li>
+              <li>Le créneau calé pendant l’appel, dans votre agenda</li>
+              <li>Un rappel la veille contre les absences</li>
+              <li>Un brief complet avant chaque rendez-vous</li>
+            </ul>
+          </div>
+          <div class="compare-col compare-col--them" data-reveal style="--d:.12s">
+            <div class="compare-title"><b>Une agence classique</b></div>
+            <ul>
+              <li>Un chef de projet entre vous et ceux qui appellent</li>
+              <li>Des séquences d’e-mails automatisées</li>
+              <li>Des rendez-vous pris sans qualification</li>
+              <li>Des créneaux à confirmer vous-même</li>
+              <li>Des absences jamais relancées</li>
+              <li>Aucune information avant le rendez-vous</li>
+            </ul>
+          </div>
+        </div>
+        <div class="difference-cta" data-reveal>
+          <a class="btn btn--solid" href="#contact" data-booking data-magnetic>Réserver un appel <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. FAQ -->
+    <section class="faq s-nuit" id="faq">
+      <div class="wrap faq-grid">
+        <div class="faq-head">
+          <h2 class="h-lg" data-split>Ce qu’on me demande <em>avant</em> mardi.</h2>
+          <a class="link" href="#contact" data-booking data-reveal>Une autre question&nbsp;? Parlons-en <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="faq-list" data-reveal>
+          <div class="qa">
+            <button class="qa-q" aria-expanded="false"><span>Vous êtes une agence&nbsp;?</span><i aria-hidden="true"></i></button>
+            <div class="qa-a"><div><p>Non. oui mardi., c’est moi, Joan Blot, en freelance. C’est moi qui appelle vos prospects, qui les qualifie et qui cale vos rendez-vous. Vous avez un seul interlocuteur, du premier appel au rendez-vous.</p></div></div>
+          </div>
+          <div class="qa">
+            <button class="qa-q" aria-expanded="false"><span>Pour quelles entreprises travaillez-vous&nbsp;?</span><i aria-hidden="true"></i></button>
+            <div class="qa-a"><div><p>Les entreprises B2B qui vendent une offre à forte valeur&nbsp;: éditeurs SaaS, agences, cabinets de conseil, services aux entreprises. Si un rendez-vous qualifié compte vraiment pour vous, on devrait se parler.</p></div></div>
+          </div>
+          <div class="qa">
+            <button class="qa-q" aria-expanded="false"><span>Qu’est-ce qu’un rendez-vous «&nbsp;qualifié&nbsp;»&nbsp;?</span><i aria-hidden="true"></i></button>
+            <div class="qa-a"><div><p>Un échange avec un décideur qui a un besoin réel, un budget et un horizon de décision. Les quatre critères sont validés avant que le créneau n’arrive dans votre agenda.</p></div></div>
+          </div>
+          <div class="qa">
+            <button class="qa-q" aria-expanded="false"><span>Pourquoi uniquement le téléphone&nbsp;?</span><i aria-hidden="true"></i></button>
+            <div class="qa-a"><div><p>Parce que c’est le seul canal qui qualifie vraiment. En quelques minutes de conversation, je sais si le besoin, le décideur, le budget et le timing sont là. Un e-mail sans réponse ne vous dit rien de tout ça.</p></div></div>
+          </div>
+          <div class="qa">
+            <button class="qa-q" aria-expanded="false"><span>En combien de temps arrivent les premiers rendez-vous&nbsp;?</span><i aria-hidden="true"></i></button>
+            <div class="qa-a"><div><p>Cela dépend de votre cible et de votre offre. Je vous donne une estimation honnête dès le premier appel, avant tout engagement.</p></div></div>
+          </div>
+          <div class="qa">
+            <button class="qa-q" aria-expanded="false"><span>Et si le prospect ne se présente pas&nbsp;?</span><i aria-hidden="true"></i></button>
+            <div class="qa-a"><div><p>Chaque rendez-vous fait l’objet d’une invitation et d’un rappel téléphonique la veille. En cas d’absence, je rappelle le prospect pour reprogrammer.</p></div></div>
+          </div>
+          <div class="qa">
+            <button class="qa-q" aria-expanded="false"><span>Comment se passe le premier appel&nbsp;?</span><i aria-hidden="true"></i></button>
+            <div class="qa-a"><div><p>15 minutes pour comprendre votre offre, vos clients et vos objectifs. Si le cold call peut vous apporter des rendez-vous, je vous explique comment&nbsp;; sinon, je vous le dis franchement.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. CTA final -->
+    <section class="cta s-papier" id="contact">
+      <svg class="motif motif--cta" data-parallax="0.1" viewBox="0 0 400 400" aria-hidden="true"><use href="#motif"/></svg>
+      <div class="wrap cta-grid">
+        <div class="cta-copy">
+          <h2 class="h-xl" data-split>Et si votre prochain <em>oui</em> tombait mardi&nbsp;?</h2>
+          <p class="lead" data-reveal>Un appel de 15 minutes, avec moi, pour voir si je peux remplir votre agenda de rendez-vous qui comptent. Sans engagement.</p>
+          <div class="cta-row" data-reveal>
+            <a class="btn btn--solid" href="#" data-booking data-magnetic>
+              Réserver mon appel
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn--ghost" href="#" data-linkedin data-magnetic>Échanger sur LinkedIn</a>
+          </div>
+          <p class="cta-proof" data-reveal><b>+160</b> rendez-vous B2B qualifiés posés · Belombre, fonio.ai, Clevizio, Rushh, ETHIC</p>
+        </div>
+
+        <div class="cta-visual" data-reveal style="--d:.2s">
+          <div class="book" id="book" data-dark aria-hidden="true">
+            <div class="book-head">
+              <img src="assets/logos/oui-mardi-icon.png" alt="" width="200" height="208">
+              <div><b>15 minutes avec Joan</b><span class="mono">15 min · Appel découverte</span></div>
+            </div>
+            <div class="book-body">
+              <div class="book-cal">
+                <div class="book-month"><b id="bookMonth">—</b><span class="book-arrows"><i></i><i></i></span></div>
+                <div class="book-dow"><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
+                <div class="book-days" id="bookDays"></div>
+              </div>
+              <div class="book-slots" id="bookSlots">
+                <span class="mono book-slots-title" id="bookSlotsTitle">Choisissez un jour</span>
+                <button tabindex="-1">09:30</button><button tabindex="-1">11:00</button><button tabindex="-1">14:30</button><button tabindex="-1">16:00</button>
+              </div>
+            </div>
+            <div class="book-foot"><span class="mono" id="bookSel">Aucun créneau</span><button class="book-confirm" id="bookConfirm" tabindex="-1">Confirmer</button></div>
+            <div class="book-done" id="bookDone">
+              <span class="book-done-ico"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+              <b>C’est calé.</b>
+              <span id="bookDoneTxt">—</span>
+              <span class="mono">Invitation envoyée</span>
+            </div>
+            <svg class="book-cursor" id="bookCursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l14 8-6.5 1.5L9.5 19z"/></svg>
+          </div>
+          <p class="sr-only">Illustration : un calendrier de réservation où un curseur choisit un mardi, un horaire, puis confirme le rendez-vous.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="assets/logos/oui-mardi-logo.png" alt="oui mardi." width="1835" height="452">
+          <p>Votre prochain <em>oui</em>, c’est mardi.</p>
+        </div>
+        <div class="footer-cols">
+          <div><span class="mono">Navigation</span><a href="#qualification">Qualification</a><a href="#methode">Méthode</a><a href="#fondateur">Qui suis-je</a><a href="#difference">Pourquoi un freelance</a><a href="#faq">FAQ</a></div>
+          <div><span class="mono">Contact</span><a href="#" data-booking>Réserver un appel</a><a href="#" data-mail>E-mail</a><a href="#" data-linkedin>LinkedIn</a></div>
+          <div><span class="mono">Légal</span><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year">2026</span> oui mardi. Tous droits réservés.</span>
+        <span class="mono">Joan Blot · Freelance cold call B2B</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Motif : icône calendrier de la marque -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="motif" viewBox="0 0 400 400">
+      <rect x="40" y="72" width="320" height="300" rx="72" style="fill:var(--motif-fill)"/>
+      <rect x="40" y="150" width="320" height="16" style="fill:var(--motif-cut)"/>
+      <rect x="112" y="18" width="44" height="118" rx="22" stroke-width="16" style="fill:var(--motif-fill);stroke:var(--motif-cut)"/>
+      <rect x="244" y="18" width="44" height="118" rx="22" stroke-width="16" style="fill:var(--motif-fill);stroke:var(--motif-cut)"/>
+      <path d="M118 262l52 48 112-112" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" style="fill:none;stroke:var(--motif-cut)"/>
+    </symbol>
+  </svg>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
