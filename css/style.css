@@ -387,7 +387,7 @@ section > .wrap { position: relative; z-index: 1; }
 }
 .marquee-track { display: flex; width: max-content; animation: marquee 34s linear infinite; }
 .marquee:hover .marquee-track { animation-play-state: paused; }
-.logos { display: flex; align-items: center; gap: 64px; list-style: none; margin: 0; padding: 0 64px 0 0; }
+.logos { display: flex; align-items: center; gap: 72px; list-style: none; margin: 0; padding: 0 72px 0 0; }
 .logos img { height: 28px; width: auto; opacity: .7; transition: opacity .25s; }
 .logos img:hover { opacity: 1; }
 @keyframes marquee { to { transform: translateX(-50%); } }
